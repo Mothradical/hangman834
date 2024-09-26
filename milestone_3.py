@@ -1,6 +1,6 @@
 import random
 
-word_list = ["apple", "banana", "orange", "kiwi", "mAelon"]
+word_list = ["apple", "banana", "orange", "kiwi", "melon"]
 
 print(word_list)
 
