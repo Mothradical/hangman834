@@ -5,7 +5,7 @@ class Hangman:
         self.word_list = word_list
         self.num_lives = num_lives
         self.word = random.choice(word_list)
-        self.word_guessed = ['_', '_', '_', '_', '_'] # Contents to be replaced with correct guesses
+        self.word_guessed = ["_"] * len(self.word) # Contents to be replaced with correct guesses
         self.num_letters = len(set(word_list))
         self.list_of_guesses = [] # New guesses are appended to this list
 
@@ -34,8 +34,14 @@ class Hangman:
             else:
                 self.list_of_guesses.append(guess)
                 self.check_guess(guess)
+                if self.num_lives == 0:
+                    print("GAME OVER")
+                    break
+                elif "_" not in self.word_guessed:
+                    print(f"Congratulations! You correctly identified the word as {self.word}")
+                    break
 
-hangman_test = Hangman(["apple", "banana"], 5)
+hangman_test = Hangman(["apple", "banana", "orange", "kiwi", "melon"], 5)
 
 hangman_test.ask_for_input()
 
