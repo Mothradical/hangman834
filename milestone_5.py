@@ -73,4 +73,5 @@ def play_game(word_list):
     game = Hangman(word_list, num_lives)
     game.ask_for_input()
 
-play_game(["apple", "banana", "orange", "kiwi", "melon"])
+word_list = ["apple", "banana", "orange", "kiwi", "melon"]
+play_game(word_list)
