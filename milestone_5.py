@@ -17,7 +17,7 @@ class Hangman:
         self.num_lives = num_lives
         self.word = random.choice(word_list)
         self.word_guessed = ["_"] * len(self.word) # Contents to be replaced with correct guesses
-        self.num_letters = len(set(self.word))
+
         self.list_of_guesses = [] # New guesses are appended to this list
 
     def check_guess(self, guess):
@@ -31,7 +31,6 @@ class Hangman:
                 self.word_guessed[index] = guess
             print(f"Good guess! {guess} is in the word.")
             print(self.word_guessed)
-            self.num_letters -= 1
         else:
             self.num_lives -= 1
             print(f"Sorry, {guess} is not in the word. Try again.")
@@ -42,7 +41,8 @@ class Hangman:
         '''
         This function asks the player for inputs for the game of Hangman.
         The function checks for the validity of the input before running the check_guess() function on the input.
-        It runs continuously until either break condition is satisfied, which depends on the outcomes of each instance of the check_guess() function.
+        It runs continuously until either break condition is satisfied, which depends on the outcomes of each instance
+        of the check_guess() function.
         This is the function to be accessed by the Hangman class object in order to commence a game of Hangman
         '''
         while True:
@@ -56,13 +56,21 @@ class Hangman:
                 self.list_of_guesses.append(guess)
                 self.check_guess(guess)
                 if self.num_lives == 0:
-                    print("GAME OVER")
+                    print("You lost!")
                     break
                 elif "_" not in self.word_guessed:
-                    print(f"Congratulations! You correctly identified the word as {self.word}")
+                    print(f"Congratulations. You won the game!\nThe word is '{self.word}'!")
                     break
 
-# hangman_test = Hangman(["apple", "banana", "orange", "kiwi", "melon"], 5)
 
-# hangman_test.ask_for_input()
+def play_game(word_list):
+    '''
+    This function takes in a list of words, creates a hangman object called 'game' using it, and
+    begins a game by calling the ask_for_input() function. num_lives is also fed into the
+    creation of the object, and can be altered to begin the game with a different number of lives.
+    '''
+    num_lives = 5
+    game = Hangman(word_list, num_lives)
+    game.ask_for_input()
 
+play_game(["apple", "banana", "orange", "kiwi", "melon"])
